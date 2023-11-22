@@ -16,5 +16,5 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [frontendmentor]()
-- Live Site URL: [netlify]()
+- Solution URL: [frontendmentor](https://www.frontendmentor.io/solutions/social-proof-section-4zeZpyhlKU)
+- Live Site URL: [netlify](https://darling-chimera-46eb56.netlify.app)
