@@ -1,0 +1,248 @@
+:root {
+  --clr-primary-dark-magenta: hsl(300, 43%, 22%);
+  --clr-primary-pink: hsl(333, 80%, 67%);
+
+  --clr-neutral-grayish-magenta: hsl(303, 10%, 53%);
+  --clr-neutral-light-magenta: hsl(300, 24%, 96%);
+  --clr-neutral-white: hsl(0, 0%, 100%);
+
+  --ff-base: "League Spartan", sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 700;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+    5. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    6. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    7. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    8. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+main {
+  background-image: url(images/bg-pattern-top-mobile.svg),
+    url(images/bg-pattern-bottom-mobile.svg);
+  background-repeat: no-repeat;
+  background-position: top left, bottom right;
+  background-size: 90% 212px, 100% 303px;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.page {
+  height: 100%;
+  display: grid;
+  font-family: var(--ff-base);
+  grid-template-areas: "info" "ratings" "buyers";
+  margin: 1rem;
+  gap: 2rem;
+}
+
+.page__info {
+  grid-area: info;
+}
+
+.page__title {
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-primary-dark-magenta);
+  text-align: center;
+  font-size: 2.4rem;
+  line-height: 0.9;
+  padding: 1.5rem 0;
+}
+
+.page__paragraph {
+  font-weight: var(--fw-regular);
+  color: var(--clr-primary-dark-magenta);
+  text-align: center;
+}
+
+.page__ratings {
+  grid-area: ratings;
+  display: grid;
+  gap: 1rem;
+}
+
+.page__rating {
+  background-color: var(--clr-neutral-light-magenta);
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: var(--clr-primary-dark-magenta);
+  font-weight: var(--fw-semi-bold);
+}
+
+.page__rating::before {
+  display: block;
+  content: "";
+  background-image: url(images/icon-star.svg);
+  background-repeat: space;
+  background-size: 17px 16px;
+  width: calc((17px + 3px) * 5);
+  height: 16px;
+}
+
+.page__buyers {
+  grid-area: buyers;
+  display: grid;
+  gap: 1rem;
+}
+
+.page__buyer {
+  background-color: var(--clr-primary-dark-magenta);
+  color: var(--clr-neutral-white);
+  padding: 2rem;
+  border-radius: 5px;
+  display: grid;
+  grid-template: auto auto 1fr / auto 1fr;
+  gap: 0 1rem;
+}
+
+.page__buyer_image {
+  max-width: 3rem;
+  border-radius: 50%;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.page__buyer_name {
+  font-weight: var(--fw-medium);
+}
+
+.page__verified_buyer {
+  color: var(--clr-primary-pink);
+}
+
+.page__buyer_opinion {
+  padding-top: 1rem;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+@media (min-width: 59rem) {
+  .page {
+    padding: 2rem;
+    max-width: 65rem;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "info ratings" "buyers buyers";
+  }
+
+  .page__title {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .page__paragraph {
+    text-align: left;
+  }
+
+  .page__ratings {
+    justify-self: end;
+    grid-template-columns: 0.5rem 0.5rem 1fr 0.5rem 0.5rem;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-areas:
+      ". . . . ."
+      "rating1 rating1 rating1 . ."
+      ". rating2 rating2 rating2 ."
+      ". .rating3 rating3 rating3"
+      ". . . . .";
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page__rating {
+    padding: 1rem 3rem;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+  .page__rating:nth-child(1) {
+    grid-area: rating1;
+  }
+  .page__rating:nth-child(2) {
+    grid-area: rating2;
+  }
+  .page__rating:nth-child(3) {
+    grid-area: rating3;
+  }
+
+  .page__buyers {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5rem 0.5rem 1fr 0.5rem 0.5rem;
+    grid-template-areas:
+      "buyer1 . ."
+      "buyer1 buyer2 ."
+      "buyer1 buyer2 buyer3"
+      ". buyer2 buyer3"
+      ". . buyer3";
+  }
+
+  .page__buyer:nth-child(1) {
+    grid-area: buyer1;
+  }
+  .page__buyer:nth-child(2) {
+    grid-area: buyer2;
+  }
+  .page__buyer:nth-child(3) {
+    grid-area: buyer3;
+  }
+}
